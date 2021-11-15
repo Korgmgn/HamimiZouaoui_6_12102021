@@ -2,11 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const sauceRoutes = require('./routes/sauce')
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://HZlearning:n5XyWZBHqlpv5m2o@cluster0.ncmib.mongodb.net/piiquanteDatabase?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.mongoId}:${process.env.mongoMdp}@cluster0.ncmib.mongodb.net/${process.env.mongoDbName}?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -25,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/sauce', sauceRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
