@@ -27,10 +27,16 @@ exports.modifySauce = (req, res, next) => {
         } : { ...req.body };
     console.log(req.body.userId, req.file, 'before if')
     if(userId == sauceObject.userId) {
-        console.log(userId, req.body.userId, sauceObject, 'if statement')
-        Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Objet modifié !'}))
-        .catch(error => res.status(400).json({ error }));
+        Sauce.findOne({ _id: req.params.id })
+            .then(sauce => {
+                console.log(userId, req.body.userId, sauceObject, 'if statement')
+                const filename = sauce.imageUrl.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => {
+                    Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+                        .then(() => res.status(200).json({ message: 'Objet modifié !'}))
+                        .catch(error => res.status(400).json({ error }));
+                })
+        })
     } else {
         res.status(403).json({ message: 'Unauthorized request !' })
     }
