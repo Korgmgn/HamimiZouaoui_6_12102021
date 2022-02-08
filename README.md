@@ -25,6 +25,8 @@ The app should reload automatically when you make a change to a file.
 Use `Ctrl+C` in the terminal to stop the local server.
 
 
+
+
 BACKEND
 
 npm install > nodemon server
