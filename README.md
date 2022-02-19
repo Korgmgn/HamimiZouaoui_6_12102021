@@ -29,4 +29,4 @@ Use `Ctrl+C` in the terminal to stop the local server.
 
 BACKEND
 
-npm install > nodemon server
+`npm install` to install dependencies, then `nodemon server` to run the server locally.
