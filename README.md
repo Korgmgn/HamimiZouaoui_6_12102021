@@ -14,7 +14,7 @@ On Windows, these installations require to use PowerShell in administrator mode.
 Then, clone this repo, `run npm install`, and `run npm install --save-dev run-script-os`.
 
 
-## Usage ##
+## Frontend ##
 
 Run `npm start`. This should both run the local server and launch your browser.
 
@@ -27,6 +27,6 @@ Use `Ctrl+C` in the terminal to stop the local server.
 
 
 
-BACKEND
+## Backend ##
 
 `npm install` to install dependencies, then `nodemon server` to run the server locally.
